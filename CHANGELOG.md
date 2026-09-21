@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- **Jellyfin 12 compatibility**: Jellyfin 12 disables the legacy `X-Emby-Token` header, so every Jellyfin request failed with `401 Unauthorized` after upgrading. The client now authenticates with the `Authorization: MediaBrowser Token="..."` header, which is supported by Jellyfin 10.8 and later.
+- **Jellyfin 12 compatibility**: Jellyfin 12 disables the legacy `X-Emby-Token` header, so every Jellyfin request failed with `401 Unauthorized` after upgrading. The client now authenticates with the `Authorization: MediaBrowser Token="..."` header, which is supported by Jellyfin 10.8 and later. Library queries also pass `CollapseBoxSetItems=false`: Jellyfin 12 otherwise returns each collection's BoxSet in place of its movies, so movies already in a collection went unmatched and `sync` collections were emptied on every other run.
 - **Accurate Radarr/Sonarr request counts**: Items that Radarr/Sonarr declined to add (excluded, blocklisted, or not found) were still counted as requested and listed in run reports and notifications. They are now excluded from the counts.
 
 ## [1.0.1] - 2026-01-22

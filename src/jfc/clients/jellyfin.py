@@ -84,6 +84,9 @@ class JellyfinClient(BaseClient):
             "ParentId": library_id,
             "Recursive": True,
             "Fields": "ProviderIds,Path,Overview,Genres",
+            # Jellyfin 12 otherwise returns a BoxSet in place of every movie that
+            # belongs to a collection, hiding those movies from the matcher
+            "CollapseBoxSetItems": False,
         }
 
         if media_type == MediaType.MOVIE:
@@ -162,6 +165,7 @@ class JellyfinClient(BaseClient):
             "Limit": limit,
             "Recursive": True,
             "Fields": "ProviderIds,Path",
+            "CollapseBoxSetItems": False,
         }
 
         if media_type == MediaType.MOVIE:
@@ -213,6 +217,7 @@ class JellyfinClient(BaseClient):
         params = {
             "Recursive": True,
             "Fields": "ProviderIds,Path",
+            "CollapseBoxSetItems": False,
         }
 
         if library_id:
